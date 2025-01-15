@@ -1,33 +1,38 @@
-import { Controller, Delete, Get, Patch, Post, Put  } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Patch, Post, Put  } from "@nestjs/common";
 import { TasksService } from "./tasks.service";
+import { Task } from "./interfaces/task.interfaces";
+import { TaskDTO } from "./dto/task.dto";
 
-@Controller({})
+@Controller("/tasks")
 export class TasksController {
 
     constructor(private tasksService: TasksService) {}
 
-    @Get('/tasks')
+    @Get()
     getAllTasks() {
         return this.tasksService.getTasks();
     }
 
-    @Post("/tasks")
-    createTask() {
-        return "Creado tareas"
+    @Post()
+    createTask(@Body() query: TaskDTO) {
+        const { id, title, description } = query;
+
+
+        return this.tasksService.createTask(query);
     }
 
-    @Put("/tasks")
+    @Put()
     updateTasks() {
-        return "Actualizando tareas"
+        return this.tasksService.updateTasks();
     }
 
-    @Delete("/tasks")
+    @Delete()
     deleteTask() {
-        return "Eliminando tareas"
+        return this.tasksService.deleteTask();
     }
 
-    @Patch("/tasks")
+    @Patch()
     updateTaskStatus() {
-        return "Actualizando estado de la tarea"
+        return this.tasksService.updateTaskStatus();
     }
 }
