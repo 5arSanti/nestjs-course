@@ -4,11 +4,18 @@ import { ProjectsModule } from './projects/projects.module';
 import { AuthModule } from './auth/auth.module';
 import { HelloController } from './hello/hello.controller';
 import { UsersController } from './users/users.controller';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from "./users/users.module";
 
 @Module({
-  imports: [TasksModule, ProjectsModule, AuthModule, UsersModule],
-  controllers: [HelloController, UsersController],
+  imports: [
+    TasksModule, 
+    ProjectsModule, 
+    AuthModule, 
+    UsersModule
+  ],
+  controllers: [
+    HelloController
+  ],
 })
 
 export class AppModule { }
