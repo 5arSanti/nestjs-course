@@ -1,5 +1,5 @@
 ```bash
-Tiempo de duracion: 57:21
+Tiempo de duracion: 1:14:30
 ```
 
 <p align="center">

@@ -1,27 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
+import { CreateUserDTO } from './dto/create-user-dto';
 
 @Injectable()
 export class UsersService {
 
-    private users = [
-        {
-            id: 1,
-            name: "User 1",
-            phone: "1234567890"
-        },
-        {
-            id: 2,
-            name: "User 2",
-            phone: "1234567890"
-        },
-        {
-            id: 3,
-            name: "User 3",
-            phone: "1234567890"
-        },
-    ]
+    private users: CreateUserDTO[] = []
 
     getUsers () {
         return this.users;
+    }
+
+    createUser(user: CreateUserDTO) {
+        if (this.users.find(u => u.id === user.id)) {
+            return new ConflictException(`User with id ${user.id} already exists`);
+        }
+
+        this.users.push(user);
+
+        return "Usuario creado correctamente";
     }
 }

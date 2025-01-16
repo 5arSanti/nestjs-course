@@ -1,8 +1,9 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsAlphanumeric, IsEmail, IsNotEmpty, IsString } from "class-validator";
 
 export class TaskDTO {
     @IsNotEmpty()
     @IsString()
+    @IsAlphanumeric()
     id: string;
 
     @IsNotEmpty()
